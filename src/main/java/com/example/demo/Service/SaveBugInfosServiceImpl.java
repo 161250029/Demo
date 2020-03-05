@@ -31,7 +31,7 @@ public class SaveBugInfosServiceImpl implements SaveBugInfosService {
 
     @Override
     public void save_spot_bugs() {
-        ArrayList<String> resultPaths = DirectoryTool.getXmlFiles("D:\\findsecbugResult");
+        ArrayList<String> resultPaths = DirectoryTool.getXmlFiles("D:\\SpotsBugResult");
         resultPaths.forEach(resultPath -> {
             try {
                 List<BugInfo> bugInfos = DomTool.getBugs(resultPath);

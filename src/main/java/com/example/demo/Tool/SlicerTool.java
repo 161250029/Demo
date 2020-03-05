@@ -65,7 +65,11 @@ public class SlicerTool {
         PointerAnalysis pa = cgb.getPointerAnalysis();
 
         Statement statement = findSeedStatementByLineNumber(findMainMethod(cg , appJar.split("\\\\")[appJar.split("\\\\").length - 1].split("\\.")[0] ,methodName , className), lineNumber);
-
+        Set<Integer> sourcelines = new HashSet<>();
+        if (statement == null) {
+            sourcelines.add(lineNumber);
+            return sourcelines;
+        }
         Collection<Statement> slice;
 
         // context-sensitive traditional slice
@@ -92,7 +96,6 @@ public class SlicerTool {
 //        for (Statement s : graph)
 //            System.out.println(StmtFormater.format(s));
         findAllMethod(appJar , className);
-        Set<Integer> sourcelines = new HashSet<>();
         for (Statement s : graph)
             if (methods.contains(s.getNode().getMethod().getName().toString()))
                 sourcelines.add(getStatementLineNumber(s));

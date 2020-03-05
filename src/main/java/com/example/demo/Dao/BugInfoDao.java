@@ -10,9 +10,15 @@ import java.util.List;
 
 @Repository
 public interface BugInfoDao extends JpaRepository<BugInfo, Long> {
-    @Query(value = "select b form BugInfo b where b.SourceFile = :filename")
+    @Query(value = "select b from BugInfo b where b.SourceFile = :filename")
     public List<BugInfo> findbugsByFileName(@Param("filename") String filename);
 
     @Query(value = "select b from BugInfo b where b.SourceFile = :filename and b.ToolName = :toolname")
     public List<BugInfo> findbugsByFileNameAndToolName(@Param("filename") String filename , @Param("toolname") String toolname);
+
+    @Query(value = "select b from BugInfo b where b.ToolName = :toolname")
+    public List<BugInfo> findBugsByToolName(@Param("toolname") String toolname);
+
+    @Query(value = "select b from BugInfo b where b.isWarning = :isWarning")
+    public List<BugInfo> findBugsByWarning(@Param("isWarning") boolean isWarning);
 }

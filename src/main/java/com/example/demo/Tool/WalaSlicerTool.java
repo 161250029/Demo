@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.function.Predicate;
 
-public class SlicerTool {
+public class WalaSlicerTool {
     private static final String EXCLUSIONS =
             "java\\/awt\\/.*\n"
                     + "javax\\/swing\\/.*\n"
@@ -48,9 +48,8 @@ public class SlicerTool {
                     + "";
     public static List<String> methods = new ArrayList<>();
     public static Set<Integer> doSlicing(String appJar , String methodName , String className , int lineNumber) throws WalaException, CancelException, IOException, InvalidClassFileException {
-        // create an analysis scope representing the appJar as a J2SE application
+        System.out.println(appJar + " " + methodName + " " + className + " " + lineNumber);
         AnalysisScope scope = AnalysisScopeReader.makeJavaBinaryAnalysisScope(appJar,null);
-//        AnalysisScopeReader.readJavaScope(appJar , null , slicer.class.getClassLoader());
         scope.setExclusions(new FileOfClasses(new ByteArrayInputStream(EXCLUSIONS.getBytes("UTF-8"))));
         ClassHierarchy cha = ClassHierarchyFactory.make(scope);
 
@@ -76,25 +75,11 @@ public class SlicerTool {
         ModRef<InstanceKey> modRef = ModRef.make();
         SDG<?> sdg = new SDG<>(cg, pa, modRef, Slicer.DataDependenceOptions.REFLECTION, Slicer.ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
 
-
-//        System.out.println("开始切片");
-
-        // context-sensitive thin slice
-
         slice = Slicer.computeBackwardSlice(statement, cg, pa, Slicer.DataDependenceOptions.NO_BASE_PTRS,
                 Slicer.ControlDependenceOptions.NONE);
 
-//        System.out.println("结束切片");
-//        dumpSlice(slice);
-
-        SDG<InstanceKey> sd=new SDG<InstanceKey>(cg, pa, Slicer.DataDependenceOptions.NO_BASE_NO_HEAP , Slicer.ControlDependenceOptions.FULL);
-
-        // filter primordial stmt
-//        System.out.println("剪枝");
         Predicate<Statement> filter = o -> slice.contains(o) && !o.toString().contains("Primordial") && o.getKind() == Statement.Kind.NORMAL;
         Graph<Statement> graph = GraphSlicer.prune(sdg, filter);
-//        for (Statement s : graph)
-//            System.out.println(StmtFormater.format(s));
         findAllMethod(appJar , className);
         for (Statement s : graph)
             if (methods.contains(s.getNode().getMethod().getName().toString()))
@@ -109,7 +94,7 @@ public class SlicerTool {
         for (Iterator<? extends CGNode> it = cg.iterator(); it.hasNext();) {
             CGNode n = it.next();
             if (n.getMethod().getName().equals(name)  && n.getMethod().getDeclaringClass().getName().toString().equals("L" + "testcases/" + appJarName + "/" + className)) {
-//                System.out.println(n.getMethod().getDeclaringClass().getName().toString() + " " + n.getMethod().getName().toString());
+                System.out.println(n.getMethod().getDeclaringClass().getName().toString() + " " + n.getMethod().getName().toString());
                 return n;
             }
         }
@@ -210,6 +195,8 @@ public class SlicerTool {
     }
     public static void main(String[] args) throws IOException, WalaException, CancelException, InvalidClassFileException {
 //        findAllMethod("src\\main\\java\\CWE15_External_Control_of_System_or_Configuration_Setting.jar" , "CWE15_External_Control_of_System_or_Configuration_Setting__connect_tcp_02");
-        System.out.println(doSlicing("src\\main\\java\\CWE15_External_Control_of_System_or_Configuration_Setting.jar" , "goodG2B1" , "CWE15_External_Control_of_System_or_Configuration_Setting__connect_tcp_02" ,166));
+
+//        System.out.println(doSlicing("src\\main\\java\\CWE15_External_Control_of_System_or_Configuration_Setting.jar" , "goodG2B1" , "CWE15_External_Control_of_System_or_Configuration_Setting__connect_tcp_02" ,166));
+        System.out.println(doSlicing("src\\main\\java\\CWE15_External_Control_of_System_or_Configuration_Setting.jar" , "badSink" , "CWE15_External_Control_of_System_or_Configuration_Setting__Environment_75b" , 42));
     }
 }

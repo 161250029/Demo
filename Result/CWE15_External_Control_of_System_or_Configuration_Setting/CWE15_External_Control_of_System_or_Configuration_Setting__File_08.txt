@@ -1,0 +1,3 @@
+false Warning In method bad in 70 line:
+                    streamFileInput = new FileInputStream(file);
+                    data = readerBuffered.readLine();

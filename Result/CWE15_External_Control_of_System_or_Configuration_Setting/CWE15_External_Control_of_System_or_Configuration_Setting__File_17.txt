@@ -1,0 +1,4 @@
+false Warning In method bad in 57 line:
+                streamFileInput = new FileInputStream(file);
+                readerInputStream = new InputStreamReader(streamFileInput, "UTF-8");
+                data = readerBuffered.readLine();

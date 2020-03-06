@@ -53,6 +53,7 @@ public class DomTool {
 			bug.setLevel(Integer.parseInt(bugElement.getAttribute("priority")));
 			NodeList childNodes = bugElement.getChildNodes();
 			boolean isFirstMethod = true;
+			boolean isFirstSourceLine = true;
 			for(int j = 0; j < childNodes.getLength(); j++){
 				if(childNodes.item(j).getNodeType() == Node.ELEMENT_NODE){
 					if (childNodes.item(j).getNodeName().equals("Class")) {
@@ -62,7 +63,8 @@ public class DomTool {
 						else
 							bug.setJarLocation(((Element)childNodes.item(j)).getAttribute("classname").split("\\.")[((Element)childNodes.item(j)).getAttribute("classname").split("\\.").length - 3] + "_" + ((Element)childNodes.item(j)).getAttribute("classname").split("\\.")[((Element)childNodes.item(j)).getAttribute("classname").split("\\.").length - 2]);
 						bug.setSourceFile(((Element)childNodes.item(j)).getAttribute("classname").split("\\.")[((Element)childNodes.item(j)).getAttribute("classname").split("\\.").length - 1]);
-					} else if("SourceLine".equals(childNodes.item(j).getNodeName())){
+					} else if("SourceLine".equals(childNodes.item(j).getNodeName()) && isFirstSourceLine){
+						isFirstSourceLine = false;
 						bug.setStart(Integer.parseInt(((Element)childNodes.item(j)).getAttribute("start")));
 						bug.setEnd(Integer.parseInt(((Element)childNodes.item(j)).getAttribute("end")));
 					}  else if ("Method".equals(childNodes.item(j).getNodeName()) && isFirstMethod){
@@ -77,7 +79,7 @@ public class DomTool {
 	}
 
 	public static boolean HasSpecialSymbol(String s) {
-		if (s.equals("s01") || s.equals("s02") || s.equals("s03") || s.equals("s04") || s.equals("s05"))
+		if (s.equals("s01") || s.equals("s02") || s.equals("s03") || s.equals("s04") || s.equals("s05") || s.equals("s06") || s.equals("s07"))
 			return  true;
 		return false;
 	}

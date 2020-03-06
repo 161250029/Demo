@@ -1,0 +1,4 @@
+false Warning In method bad in 56 line:
+                    streamFileInput = new FileInputStream(file);
+                    data = readerBuffered.readLine();
+                BufferedReader readerBuffered = null;

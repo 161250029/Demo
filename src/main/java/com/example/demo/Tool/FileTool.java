@@ -2,6 +2,7 @@ package com.example.demo.Tool;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class FileTool {
        private ArrayList<String> Lines = new ArrayList<>();
@@ -9,7 +10,7 @@ public class FileTool {
        private int ClassLine;
        private int MethodStartLine;
        private int MethodEndLine;
-       public void init(String path) throws IOException {
+       public FileTool(String path) throws IOException {
            this.path = path;
            read(path);
            getClassLine();
@@ -78,6 +79,20 @@ public class FileTool {
        }
        public String getMethodName(int lineNumber) {
                return Lines.get(MethodStartLine).trim().split(" ")[2];
+       }
+
+       public void writeWalaStatements(String path , String methodName , Set<Integer> lineNumbers , int source_bug_line , boolean isWarning) throws IOException {
+           File file = new File(path);
+           if (!file.exists())
+               file.createNewFile();
+           BufferedWriter bw = new BufferedWriter(new FileWriter(file , true));
+           bw.write(isWarning + " Warning In method " + methodName + " in " + source_bug_line + " line:");
+           bw.newLine();
+           for (Integer lineNumber : lineNumbers) {
+               bw.write(Lines.get(lineNumber - 1));
+               bw.newLine();
+           }
+           bw.close();
        }
        public void run(int lineNumber) throws IOException {
            getMethodLines(lineNumber);

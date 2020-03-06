@@ -1,0 +1,8 @@
+false Warning In method badSink in 42 line:
+            streamByteArrayInput = new ByteArrayInputStream(dataSerialized);
+            streamObjectInput = new ObjectInputStream(streamByteArrayInput);
+            String data = (String)streamObjectInput.readObject();
+false Warning In method goodG2BSink in 122 line:
+            streamByteArrayInput = new ByteArrayInputStream(dataSerialized);
+            streamObjectInput = new ObjectInputStream(streamByteArrayInput);
+            String data = (String)streamObjectInput.readObject();

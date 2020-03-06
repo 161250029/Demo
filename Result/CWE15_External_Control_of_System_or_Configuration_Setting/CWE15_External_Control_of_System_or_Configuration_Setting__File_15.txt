@@ -1,0 +1,3 @@
+false Warning In method bad in 58 line:
+                    data = readerBuffered.readLine();
+                File file = new File("C:\\data.txt");

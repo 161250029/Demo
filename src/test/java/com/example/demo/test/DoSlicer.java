@@ -1,5 +1,6 @@
 package com.example.demo.test;
 
+import com.example.demo.ServiceInterface.DoSlicerService;
 import com.example.demo.ServiceInterface.MarkBugService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +13,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class DoSlicer {
     @Autowired
     private MarkBugService markBugService;
+    @Autowired
+    DoSlicerService doSlicerService;
 
     @Test
     public void test1() {
         markBugService.MarkBugs();
+    }
+
+    @Test
+    public void  test2() {
+        doSlicerService.WalaSlicer_Positive();
     }
 
 

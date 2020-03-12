@@ -1,0 +1,8 @@
+727 OBJECT_DESERIALIZATION 1 42
+false Warning In method badSink in 42 line:
+String data = (String)streamObjectInput.readObject();
+
+728 OBJECT_DESERIALIZATION 1 122
+false Warning In method goodG2BSink in 122 line:
+String data = (String)streamObjectInput.readObject();
+

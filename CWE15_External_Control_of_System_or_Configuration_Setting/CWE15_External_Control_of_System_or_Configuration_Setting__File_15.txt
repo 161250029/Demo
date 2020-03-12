@@ -1,0 +1,10 @@
+418 EXTERNAL_CONFIG_CONTROL 1 120
+false Warning In method bad in 120 line:
+IO.logger.log(Level.WARNING, "Error closing FileInputStream", exceptIO);
+dbConnection.setCatalog(data);
+
+16640 DMI_HARDCODED_ABSOLUTE_FILENAME 2 45
+false Warning In method bad in 45 line:
+switch (6)
+File file = new File("C:\\data.txt");
+

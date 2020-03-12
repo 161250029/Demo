@@ -1,0 +1,4 @@
+712 EXTERNAL_CONFIG_CONTROL 1 49
+false Warning In method bad in 49 line:
+dbConnection.setCatalog(data);
+

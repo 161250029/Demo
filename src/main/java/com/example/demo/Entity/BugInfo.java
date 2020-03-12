@@ -18,21 +18,23 @@ public class BugInfo {
     private int start;
     private int end;
     private boolean isWarning;
+    private String BugType;
     public BugInfo() {
     }
 
-    public BugInfo(long id, String toolName, String jarLocation, String methodName, String sourceFile, int level, String author, String date, int start, int end, boolean isWarning) {
+    public BugInfo(long id, String toolName, String jarLocation, String methodName, String sourceFile, int level, String author, String date, int start, int end, boolean isWarning, String bugType) {
         this.id = id;
-        ToolName = toolName;
-        JarLocation = jarLocation;
-        MethodName = methodName;
-        SourceFile = sourceFile;
+        this.ToolName = toolName;
+        this.JarLocation = jarLocation;
+        this.MethodName = methodName;
+        this.SourceFile = sourceFile;
         this.level = level;
         this.author = author;
         this.date = date;
         this.start = start;
         this.end = end;
         this.isWarning = isWarning;
+        this.BugType = bugType;
     }
 
     public String getToolName() {
@@ -49,6 +51,14 @@ public class BugInfo {
 
     public void setSourceFile(String sourceFile) {
         SourceFile = sourceFile;
+    }
+
+    public String getBugType() {
+        return BugType;
+    }
+
+    public void setBugType(String bugType) {
+        BugType = bugType;
     }
 
     public long getId() {

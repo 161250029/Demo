@@ -1,0 +1,8 @@
+16623 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 2 31
+false Warning In method bad in 31 line:
+data = System.getenv("ADD");
+
+16624 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 46
+false Warning In method goodG2B in 46 line:
+data = "foo";
+

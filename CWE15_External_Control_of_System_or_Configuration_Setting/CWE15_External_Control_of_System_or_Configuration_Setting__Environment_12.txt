@@ -1,0 +1,5 @@
+16619 DB_DUPLICATE_BRANCHES 2 85
+false Warning In method goodG2B in 85 line:
+if (IO.staticReturnsTrueOrFalse())
+data = "foo";
+

@@ -26,5 +26,14 @@ public class DoSlicer {
         doSlicerService.WalaSlicer_Positive();
     }
 
+    @Test
+    public void test3() {
+        doSlicerService.TextSlicer_Positive();
+    }
+
+    @Test
+    public void test4() {
+        doSlicerService.TextSlicer_False_Postive();
+    }
 
 }

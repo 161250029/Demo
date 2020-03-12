@@ -1,5 +1,7 @@
 package com.example.demo.Tool;
 
+import com.example.demo.Resources.SlicerType;
+import com.example.demo.Resources.StatementInfo;
 import com.ibm.wala.classLoader.IBytecodeMethod;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.classLoader.Language;
@@ -63,9 +65,9 @@ public class WalaSlicerTool {
 
         PointerAnalysis pa = cgb.getPointerAnalysis();
 
-        Statement statement = findSeedStatementByLineNumber(findMainMethod(cg , appJar.split("\\\\")[appJar.split("\\\\").length - 1].split("\\.")[0] ,methodName , className), lineNumber);
+        StatementInfo statementInfo = findSeedStatementInfoByLineNumber(findMainMethod(cg , appJar.split("\\\\")[appJar.split("\\\\").length - 1].split("\\.")[0] ,methodName , className), lineNumber);
         Set<Integer> sourcelines = new HashSet<>();
-        if (statement == null) {
+        if (statementInfo == null) {
             sourcelines.add(lineNumber);
             return sourcelines;
         }
@@ -74,9 +76,14 @@ public class WalaSlicerTool {
         // context-sensitive traditional slice
         ModRef<InstanceKey> modRef = ModRef.make();
         SDG<?> sdg = new SDG<>(cg, pa, modRef, Slicer.DataDependenceOptions.REFLECTION, Slicer.ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
-
-        slice = Slicer.computeBackwardSlice(statement, cg, pa, Slicer.DataDependenceOptions.NO_BASE_PTRS,
-                Slicer.ControlDependenceOptions.NONE);
+        if (statementInfo.getSlicerType() == SlicerType.BackwardSlice) {
+            slice = Slicer.computeBackwardSlice(statementInfo.getSeedStatement(), cg, pa, Slicer.DataDependenceOptions.NO_BASE_PTRS,
+                    Slicer.ControlDependenceOptions.NONE);
+        }
+        else {
+            slice = Slicer.computeForwardSlice(statementInfo.getSeedStatement(), cg, pa, Slicer.DataDependenceOptions.NO_BASE_PTRS,
+                    Slicer.ControlDependenceOptions.NONE);
+        }
 
         Predicate<Statement> filter = o -> slice.contains(o) && !o.toString().contains("Primordial") && o.getKind() == Statement.Kind.NORMAL;
         Graph<Statement> graph = GraphSlicer.prune(sdg, filter);
@@ -98,7 +105,7 @@ public class WalaSlicerTool {
                 return n;
             }
         }
-        Assertions.UNREACHABLE("failed to find " + methodName +" method");
+//        Assertions.UNREACHABLE("failed to find " + methodName +" method");
         return null;
     }
 
@@ -113,6 +120,25 @@ public class WalaSlicerTool {
         }
     }
 
+    public static StatementInfo findSeedStatementInfoByLineNumber(CGNode n, int LineNumber) throws InvalidClassFileException {
+        if (n == null)
+            return null;
+        IR ir = n.getIR();
+        for (int i = 0 ; i < ir.getInstructions().length ; i ++) {
+//            System.out.println(IRIdexToLineNumber(ir , i));
+            if (IRIdexToLineNumber(ir , i) == LineNumber && ir.getInstructions()[i] != null) {
+                StatementInfo statementInfo = new StatementInfo();
+                if (ir.getInstructions()[i].getNumberOfUses() < ir.getInstructions()[i].getNumberOfDefs())
+                    statementInfo.setSlicerType(SlicerType.BackwardSlice);
+                else
+                    statementInfo.setSlicerType(SlicerType.ForwardSlice);
+                statementInfo.setSeedStatement(new NormalStatement(n , i));
+                return statementInfo;
+            }
+        }
+        Assertions.UNREACHABLE("failed to find call to "  + " in " + n);
+        return null;
+    }
     //According to LineNumber , find the seed statement
     public static Statement findSeedStatementByLineNumber(CGNode n, int LineNumber) throws InvalidClassFileException {
         IR ir = n.getIR();

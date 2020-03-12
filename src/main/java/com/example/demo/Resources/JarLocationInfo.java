@@ -147,4 +147,9 @@ public class JarLocationInfo {
     };
 
     public static String Jar_Directory_prefix = "D:\\ChromeCoreDownloads\\Juliet_Test_Suite_v1.3_for_Java\\Java\\src\\testcases";
+
+    public static String[] BanSourceFiles = {
+            "CWE568_Finalize_Without_Super__empty_01_bad$HelperClass"
+            , "CWE568_Finalize_Without_Super__from_console_01_bad$HelperClass"
+    } ;
 }

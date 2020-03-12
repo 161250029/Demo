@@ -1,0 +1,4 @@
+459 EXTERNAL_CONFIG_CONTROL 1 45
+false Warning In method badSink in 45 line:
+dbConnection.setCatalog(data);
+

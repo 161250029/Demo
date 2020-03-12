@@ -1,0 +1,11 @@
+16672 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 36
+false Warning In method bad in 36 line:
+data = ""; /* Initialize data */
+{
+
+16673 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 85
+false Warning In method goodG2B in 85 line:
+{
+data = "foo";
+(new CWE15_External_Control_of_System_or_Configuration_Setting__PropertiesFile_68b()).badSink();
+

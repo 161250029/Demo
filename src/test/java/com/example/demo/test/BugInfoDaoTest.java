@@ -28,5 +28,6 @@ public class BugInfoDaoTest {
     @Test
     public void test3() {
         System.out.println(bugInfoDao.findBugsByJarLocation("CWE15_External_Control_of_System_or_Configuration_Setting").size());
+        System.out.println(bugInfoDao.findBugsByStart(0).get(0).getEnd() + bugInfoDao.findBugsByStart(0).get(0).getSourceFile() + bugInfoDao.findBugsByStart(0).get(0).getMethodName());
     }
 }

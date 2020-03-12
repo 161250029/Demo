@@ -1,0 +1,5 @@
+16658 DMI_HARDCODED_ABSOLUTE_FILENAME 2 44
+false Warning In method bad in 44 line:
+data = ""; /* Initialize data */
+File file = new File("C:\\data.txt");
+

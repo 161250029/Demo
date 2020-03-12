@@ -1,0 +1,10 @@
+526 EXTERNAL_CONFIG_CONTROL 1 118
+false Warning In method bad in 118 line:
+readerBuffered.close();
+dbConnection.setCatalog(data);
+
+16686 DB_DUPLICATE_BRANCHES 2 149
+false Warning In method goodG2B in 149 line:
+if (IO.staticReturnsTrueOrFalse())
+data = "foo";
+

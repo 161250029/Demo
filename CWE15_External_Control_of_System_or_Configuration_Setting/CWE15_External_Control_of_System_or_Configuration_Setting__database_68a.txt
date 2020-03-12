@@ -1,0 +1,11 @@
+16702 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 36
+false Warning In method bad in 36 line:
+data = ""; /* Initialize data */
+{
+
+16703 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 114
+false Warning In method goodG2B in 114 line:
+data = "foo";
+{
+IO.logger.log(Level.WARNING, "Error closing ResultSet", exceptSql);
+

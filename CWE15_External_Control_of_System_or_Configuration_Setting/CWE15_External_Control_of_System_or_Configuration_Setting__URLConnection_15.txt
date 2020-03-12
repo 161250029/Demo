@@ -1,0 +1,5 @@
+492 EXTERNAL_CONFIG_CONTROL 1 106
+false Warning In method bad in 106 line:
+IO.logger.log(Level.WARNING, "Error closing InputStreamReader", exceptIO);
+dbConnection.setCatalog(data);
+

@@ -1,0 +1,8 @@
+16708 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 30
+false Warning In method bad in 30 line:
+data = ""; /* initialize data in case there are no cookies */
+
+16709 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 55
+false Warning In method goodG2B in 55 line:
+data = "foo";
+

@@ -1,0 +1,10 @@
+467 EXTERNAL_CONFIG_CONTROL 1 40
+false Warning In method badSink in 40 line:
+dbConnection = IO.getDBConnection();
+dbConnection.setCatalog(data);
+
+468 EXTERNAL_CONFIG_CONTROL 1 76
+false Warning In method goodG2BSink in 76 line:
+dbConnection = IO.getDBConnection();
+dbConnection.setCatalog(data);
+

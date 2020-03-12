@@ -1,0 +1,8 @@
+16720 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 31
+false Warning In method bad in 31 line:
+data = ""; /* initialize data in case id is not in query string */
+
+16721 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 60
+false Warning In method goodG2B in 60 line:
+data = "foo";
+

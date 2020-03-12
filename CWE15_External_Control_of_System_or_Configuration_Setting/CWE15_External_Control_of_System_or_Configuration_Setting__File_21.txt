@@ -1,0 +1,10 @@
+421 EXTERNAL_CONFIG_CONTROL 1 54
+false Warning In method bad in 54 line:
+dbConnection = IO.getDBConnection();
+dbConnection.setCatalog(data);
+
+16643 DMI_HARDCODED_ABSOLUTE_FILENAME 2 85
+false Warning In method bad_source in 85 line:
+if (badPrivate)
+File file = new File("C:\\data.txt");
+

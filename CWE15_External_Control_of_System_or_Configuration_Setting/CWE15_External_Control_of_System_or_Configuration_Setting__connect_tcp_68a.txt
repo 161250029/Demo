@@ -1,0 +1,11 @@
+16690 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 36
+false Warning In method bad in 36 line:
+data = ""; /* Initialize data */
+{
+
+16691 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 116
+false Warning In method goodG2B in 116 line:
+if (readerBuffered != null)
+data = "foo";
+{
+

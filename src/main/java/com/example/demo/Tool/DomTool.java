@@ -51,6 +51,7 @@ public class DomTool {
 				continue;
 			BugInfo bug = new BugInfo();  //实例化 Bug对象
 			bug.setLevel(Integer.parseInt(bugElement.getAttribute("priority")));
+			bug.setBugType(bugElement.getAttribute("type").toString());
 			NodeList childNodes = bugElement.getChildNodes();
 			boolean isFirstMethod = true;
 			boolean isFirstSourceLine = true;

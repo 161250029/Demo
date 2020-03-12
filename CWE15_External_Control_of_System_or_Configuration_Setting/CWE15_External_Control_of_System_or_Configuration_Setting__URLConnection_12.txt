@@ -1,0 +1,10 @@
+489 EXTERNAL_CONFIG_CONTROL 1 105
+false Warning In method bad in 105 line:
+dbConnection.setCatalog(data);
+IO.logger.log(Level.WARNING, "Error with stream reading", exceptIO);
+
+16680 DB_DUPLICATE_BRANCHES 2 136
+false Warning In method goodG2B in 136 line:
+if (IO.staticReturnsTrueOrFalse())
+data = "foo";
+

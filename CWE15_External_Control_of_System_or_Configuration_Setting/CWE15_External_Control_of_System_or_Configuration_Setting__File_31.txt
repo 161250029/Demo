@@ -1,0 +1,10 @@
+423 EXTERNAL_CONFIG_CONTROL 1 120
+false Warning In method bad in 120 line:
+IO.logger.log(Level.WARNING, "Error with stream reading", exceptIO);
+dbConnection.setCatalog(data);
+
+16648 DMI_HARDCODED_ABSOLUTE_FILENAME 2 45
+false Warning In method bad in 45 line:
+data = ""; /* Initialize data */
+File file = new File("C:\\data.txt");
+

@@ -1,0 +1,5 @@
+482 EXTERNAL_CONFIG_CONTROL 1 111
+false Warning In method bad in 111 line:
+IO.logger.log(Level.WARNING, "Error with stream reading", exceptIO);
+dbConnection.setCatalog(data);
+

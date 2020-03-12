@@ -1,0 +1,16 @@
+678 EXTERNAL_CONFIG_CONTROL 1 48
+false Warning In method bad in 48 line:
+dbConnection.setCatalog(data);
+
+16711 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 37
+false Warning In method bad in 37 line:
+badPublicStatic = true;
+
+16712 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 87
+false Warning In method goodG2B1 in 87 line:
+goodG2B1PublicStatic = false;
+
+16713 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 126
+false Warning In method goodG2B2 in 126 line:
+goodG2B2PublicStatic = true;
+

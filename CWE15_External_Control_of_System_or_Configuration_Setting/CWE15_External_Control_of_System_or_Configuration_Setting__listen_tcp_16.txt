@@ -1,0 +1,5 @@
+744 EXTERNAL_CONFIG_CONTROL 1 128
+false Warning In method bad in 128 line:
+dbConnection.setCatalog(data);
+readerBuffered.close();
+

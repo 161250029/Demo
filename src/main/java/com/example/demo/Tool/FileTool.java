@@ -1,5 +1,7 @@
 package com.example.demo.Tool;
 
+import com.example.demo.Entity.BugInfo;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Set;
@@ -40,6 +42,8 @@ public class FileTool {
        }
 
        public void getMethodLines(int lineNumber) {
+           if (lineNumber == 0)
+               return;
            int start = lineNumber - 1;
            int end = Lines.size() - 1;
            for (int i = lineNumber - 1 ; i >= 0 ; i --) {
@@ -69,37 +73,52 @@ public class FileTool {
        }
 
        public boolean isMethodStatement(int lineNumber) {
+            getMethodLines(lineNumber);
             if (lineNumber - 1 <= ClassLine || lineNumber -1 >= MethodEndLine)
                 return false;
-            getMethodLines(lineNumber);
             if (MethodStartLine <= ClassLine) {
                 return false;
             }
             return true;
        }
-       public String getMethodName(int lineNumber) {
-               return Lines.get(MethodStartLine).trim().split(" ")[2];
-       }
 
-       public void writeWalaStatements(String path , String methodName , Set<Integer> lineNumbers , int source_bug_line , boolean isWarning) throws IOException {
-           File file = new File(path);
+    /**
+     *
+     * @param out_path
+     * @param lineNumbers
+     * @param bugInfo
+     * @throws IOException
+     */
+       public void writeWalaStatements(String out_path , Set<Integer> lineNumbers , BugInfo bugInfo) throws IOException {
+           File file = new File(out_path);
            if (!file.exists())
                file.createNewFile();
            BufferedWriter bw = new BufferedWriter(new FileWriter(file , true));
-           bw.write(isWarning + " Warning In method " + methodName + " in " + source_bug_line + " line:");
+           bw.write(bugInfo.getId() + " " + bugInfo.getBugType() + " " + bugInfo.getLevel() + " " + bugInfo.getStart());
+           bw.newLine();
+           bw.write(bugInfo.isWarning() + " Warning In method " + bugInfo.getMethodName() + " in " + bugInfo.getStart() + " line:");
            bw.newLine();
            for (Integer lineNumber : lineNumbers) {
-               bw.write(Lines.get(lineNumber - 1));
-               bw.newLine();
+               if (lineNumber - 1 <= Lines.size() - 1) {
+                   bw.write(Lines.get(lineNumber - 1).trim());
+                   bw.newLine();
+               }
            }
+           bw.newLine();
            bw.close();
        }
-       public void run(int lineNumber) throws IOException {
-           getMethodLines(lineNumber);
-           String[] prefix = path.split("\\\\");
-           System.out.println(prefix[prefix.length - 1]);
-           String out_path = "D:\\FileSlice\\" + prefix[prefix.length - 1].split("\\.")[0]  + ".java";
+       public boolean run(String out_path , int lineNumber) throws IOException {
+           if (!isMethodStatement(lineNumber)) {
+               return false;
+           }
+//           getMethodLines(lineNumber);
+//           String[] prefix = path.split("\\\\");
+//           System.out.println(prefix[prefix.length - 1]);
+//           String out_path = "D:\\FileSlice\\" + prefix[prefix.length - 1].split("\\.")[0] + "\\" +prefix[prefix.length - 1].split("\\.")[0]  + ".java";
+//           String out_path = path.split("\\:")[1].split("\\\\") + "\\" + lineNumber + "\\" + prefix[prefix.length - 1].split("\\.")[0]  + ".java";
            File result_file = new File(out_path);
+           if (!result_file.exists())
+               result_file.createNewFile();
            BufferedWriter writer = new BufferedWriter(new FileWriter(result_file));
            for(int i = 0 ; i <= ClassLine + 1 ; i ++) {
                writer.write(Lines.get(i));
@@ -114,6 +133,24 @@ public class FileTool {
            if (MethodEndLine != Lines.size() - 1 )
                writer.write("}");
            writer.close();
+           return true;
+       }
+
+       public void GenerateMethodAndBugInfo(String out_method_path , String out_bug_info_path , BugInfo bugInfo ,int lineNumber) throws IOException {
+           if (!run(out_method_path , lineNumber))
+               return;
+           File bug_info = new File(out_bug_info_path);
+           if (!bug_info.exists())
+               bug_info.createNewFile();
+           BufferedWriter bw = new BufferedWriter(new FileWriter(bug_info));
+           bw.write(bugInfo.getId() + " " + bugInfo.getBugType() + " " + bugInfo.getLevel() + " " + bugInfo.getStart());
+           bw.flush();
+           bw.close();
+       }
+
+       @Deprecated
+       public String getMethodName(int lineNumber) {
+           return Lines.get(MethodStartLine).trim().split(" ")[2];
        }
 
     public static void main(String[] args) throws IOException {

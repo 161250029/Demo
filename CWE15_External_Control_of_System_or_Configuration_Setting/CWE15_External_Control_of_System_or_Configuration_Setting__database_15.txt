@@ -1,0 +1,5 @@
+603 EXTERNAL_CONFIG_CONTROL 1 118
+false Warning In method bad in 118 line:
+dbConnection.setCatalog(data);
+catch (SQLException exceptSql)
+

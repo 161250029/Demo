@@ -1,0 +1,9 @@
+424 EXTERNAL_CONFIG_CONTROL 1 46
+false Warning In method badSink in 46 line:
+dbConnection.setCatalog(data);
+
+16649 DMI_HARDCODED_ABSOLUTE_FILENAME 2 75
+false Warning In method bad in 75 line:
+data = ""; /* Initialize data */
+File file = new File("C:\\data.txt");
+

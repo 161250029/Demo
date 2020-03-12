@@ -1,0 +1,12 @@
+16696 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 35
+false Warning In method bad in 35 line:
+data = ""; /* Initialize data */
+
+public static String data;
+
+16697 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 96
+false Warning In method goodG2B in 96 line:
+data = "foo";
+}
+readerInputStream.close();
+

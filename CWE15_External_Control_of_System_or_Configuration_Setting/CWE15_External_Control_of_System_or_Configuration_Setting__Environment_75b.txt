@@ -1,0 +1,12 @@
+402 OBJECT_DESERIALIZATION 1 42
+false Warning In method badSink in 42 line:
+streamByteArrayInput = new ByteArrayInputStream(dataSerialized);
+streamObjectInput = new ObjectInputStream(streamByteArrayInput);
+String data = (String)streamObjectInput.readObject();
+
+403 OBJECT_DESERIALIZATION 1 122
+false Warning In method goodG2BSink in 122 line:
+streamByteArrayInput = new ByteArrayInputStream(dataSerialized);
+streamObjectInput = new ObjectInputStream(streamByteArrayInput);
+String data = (String)streamObjectInput.readObject();
+

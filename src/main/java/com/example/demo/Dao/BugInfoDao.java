@@ -24,4 +24,7 @@ public interface BugInfoDao extends JpaRepository<BugInfo, Long> {
 
     @Query(value = "select b from BugInfo b where b.JarLocation = :JarLocation")
     public List<BugInfo> findBugsByJarLocation(@Param("JarLocation") String JarLocation);
+
+    @Query(value = "select b from BugInfo b where b.start = :start")
+    public List<BugInfo> findBugsByStart(@Param("start") int start);
 }

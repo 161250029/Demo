@@ -1,0 +1,8 @@
+16714 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 1 31
+false Warning In method bad in 31 line:
+data = request.getParameter("name");
+
+16715 ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD 3 46
+false Warning In method goodG2B in 46 line:
+data = "foo";
+

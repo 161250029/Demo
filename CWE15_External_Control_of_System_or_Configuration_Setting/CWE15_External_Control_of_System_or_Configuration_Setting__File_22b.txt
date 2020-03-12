@@ -1,0 +1,5 @@
+16647 DMI_HARDCODED_ABSOLUTE_FILENAME 2 41
+false Warning In method badSource in 41 line:
+if (CWE15_External_Control_of_System_or_Configuration_Setting__File_22a.badPublicStatic)
+File file = new File("C:\\data.txt");
+

@@ -1,0 +1,15 @@
+415 EXTERNAL_CONFIG_CONTROL 1 119
+false Warning In method bad in 119 line:
+dbConnection.setCatalog(data);
+IO.logger.log(Level.WARNING, "Error with stream reading", exceptIO);
+
+16636 DB_DUPLICATE_BRANCHES 2 150
+false Warning In method goodG2B in 150 line:
+if (IO.staticReturnsTrueOrFalse())
+data = "foo";
+
+16637 DMI_HARDCODED_ABSOLUTE_FILENAME 2 43
+false Warning In method bad in 43 line:
+if (IO.staticReturnsTrueOrFalse())
+File file = new File("C:\\data.txt");
+
